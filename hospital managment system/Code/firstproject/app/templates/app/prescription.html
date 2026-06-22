@@ -1,0 +1,53 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<h2>Create Prescription</h2>
+
+<div class="card">
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Appointment</label>
+        <select name="appointment" required>
+            {% for a in appointments %}
+                <option value="{{ a.id }}">
+                    {{ a.patient.name }} - {{ a.doctor.name }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label>Medicine</label>
+        <select name="medicine" required>
+            {% for m in medicines %}
+                <option value="{{ m.id }}">
+                    {{ m.name }} ({{ m.quantity }} in stock)
+                </option>
+            {% endfor %}
+        </select>
+
+        <label>Quantity</label>
+        <input type="number" name="quantity" required>
+
+        <button type="submit">Add</button>
+    </form>
+
+</div>
+<div class="card">
+    <h3>Prescription Items</h3>
+    <ul>
+        {% for item in items %}
+            <li>
+                {{ item.medicine.name }} - {{ item.quantity }}
+            </li>
+        {% empty %}
+            <li>No items yet</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

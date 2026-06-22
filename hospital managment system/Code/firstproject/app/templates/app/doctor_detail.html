@@ -1,0 +1,28 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<h2>Doctor Profile</h2>
+
+<div class="card">
+    <h3>{{ doctor.name }}</h3>
+    <p><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+    <p><strong>Age:</strong> {{ doctor.age }}</p>
+    <p><strong>Experience:</strong> {{ doctor.experience }} years</p>
+</div>
+
+<div class="card">
+    <h3>Appointments</h3>
+
+    <ul>
+        {% for a in appointments %}
+            <li>
+                {{ a.patient.name }} - {{ a.date }} ({{ a.status }})
+            </li>
+        {% empty %}
+            <li>No appointments yet</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

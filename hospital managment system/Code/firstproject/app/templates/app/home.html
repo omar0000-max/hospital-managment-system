@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<h2 style="margin-bottom: 20px;">Hospital Management Dashboard</h2>
+
+<div class="dashboard">
+
+    <div class="card-box">
+        <h3>Patients</h3>
+        <p>Manage all patients</p>
+        <a href="{% url 'patients' %}">
+            <button>Go</button>
+        </a>
+    </div>
+
+    <div class="card-box">
+        <h3>Appointments</h3>
+        <p>View and schedule appointments</p>
+        <a href="{% url 'appointments' %}">
+            <button>Go</button>
+        </a>
+    </div>
+
+    <div class="card-box">
+        <h3>Medicines</h3>
+        <p>Manage inventory</p>
+        <a href="{% url 'medicines' %}">
+            <button>Go</button>
+        </a>
+    </div>
+
+    <div class="card-box">
+        <h3>Prescriptions</h3>
+        <p>Create prescriptions</p>
+        <a href="{% url 'prescription' %}">
+            <button>Go</button>
+        </a>
+    </div>
+
+</div>
+{% endblock %}

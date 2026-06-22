@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<h2>Patients</h2>
+
+<div class="card">
+    <h3>Add Patient</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="phone" placeholder="Phone" required>
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+<div class="card">
+    <h3>Patient List</h3>
+    <ul>
+        {% for patient in patients %}
+    <li>
+        {{ patient.name }} - {{ patient.phone }}
+
+        <a href="{% url 'delete_patient' patient.id %}">
+            <button style="background:red; color:white; margin-left:10px;">
+                Delete
+            </button>
+        </a>
+    </li>
+{% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
